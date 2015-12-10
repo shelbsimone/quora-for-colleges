@@ -45,6 +45,7 @@ group :development do
   gem 'spring'
   gem "therubyracer"
   gem "font-awesome-rails"
+  gem 'simple_form'
   
   gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 end
