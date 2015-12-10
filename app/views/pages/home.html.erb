@@ -1,5 +1,16 @@
+
+
+
+
+
 <div class="jumbotron">
   <h1><i class="fa fa-pause-circle-o"></i> CollQuora</h1>
   <p>Communicate with University Officials from In House</p>
-  <%= link_to "Sign Up", new_user_registration_path, class:"btn btn-primary btn-lg" %>
+  
+  <% if current_user%>
+        <%= link_to "Dashboard", questions_path, class:"btn btn-primary btn-lg" %>
+        <% else %>
+        <%= link_to "Sign Up", new_user_registration_path, class:"btn btn-primary btn-lg" %>
+        <% end %>
+  
 </div>

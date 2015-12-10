@@ -8,7 +8,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to "<i class='fa fa-pause-circle-o'></i> CollQuora".html_safe, root_path, class: "navbar-brand"  %>
+      <% if current_user%>
+        <%= link_to "<i class='fa fa-pause-circle-o'></i> CollQuora".html_safe, questions_path, class: "navbar-brand"  %>
+        <% else %>
+        <%= link_to "<i class='fa fa-pause-circle-o'></i> CollQuora".html_safe, root_path, class: "navbar-brand"  %>
+        <% end %>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

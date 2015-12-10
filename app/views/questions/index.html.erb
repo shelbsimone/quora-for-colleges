@@ -1,4 +1,4 @@
-<h1>Listing Questions</h1>
+<h1>Recent Questions</h1><br>
 
 
     <% @questions.each do |question| %>
@@ -9,7 +9,7 @@
           <%= question.content %>
         </strong></div>
         <div class="panel-body">look at all these details</div>
-        <div class="panel-footer">from <%= question.user.email %></div>
+        <div class="panel-footer">from <%= question.user.email %> on <%= question.created_at.strftime("%m/%d/%Y") %></div>
       </div>
       
       
