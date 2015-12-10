@@ -1,0 +1,21 @@
+<h1>Listing Questions</h1>
+
+
+    <% @questions.each do |question| %>
+      
+      
+      <div class="panel panel-primary">
+        <div class="panel-heading"><strong>
+          <%= question.content %>
+        </strong></div>
+        <div class="panel-body">look at all these details</div>
+        <div class="panel-footer">from <%= question.user.email %></div>
+      </div>
+      
+      
+    <% end %>
+
+
+<br>
+
+<%= link_to 'Ask A Question', new_question_path %>
