@@ -15,6 +15,18 @@
         <%= link_to 'New comment', new_question_comment_path(@question) %>
 <% end %>
 
+<h2>Comments</h2>
+<% @question.comments.each do |c| %>
+  
+  <div class="panel panel-primary">
+  <div class="panel-heading"><strong>
+      RE: <%= @question.content %>
+  </strong></div>
+  <div class="panel-body"><%=h c.body %></div>
+  <div class="panel-footer">from <%=h c.commenter %> on <%= c.created_at.strftime("%m/%d/%Y") %></div>
+</div>
+<% end %>
+
 <!--<div class="panel panel-primary">-->
 <!--        <div class="panel-heading"><strong>-->
           

@@ -1,85 +1,4 @@
 class CommentsController < ApplicationController
-
-  # # GET /comments
-  # # GET /comments.json
-  # def index
-  #   @question = Question.find(params[:question_id])
-  #   @comments = @question.comments
-  # end
-
-  # # GET /comments/1
-  # # GET /comments/1.json
-  # def show
-  #   @question = Question.find(params[:question_id])
-  #   @comment = @question.comments.find(params[:id])
-  # end
-
-  # # GET /comments/new
-  # def new
-  #   @question = Question.find(params[:question_id])
-  #   @comment = @question.comments.new
-  # end
-
-  # # GET /comments/1/edit
-  # def edit
-  #   @question = Question.find(params[:question_id])
-  #   @comment = @question.comments.find(params[:id])
-  # end
-
-  # # POST /comments
-  # # POST /comments.json
-  # def create
-  #   @question = Question.find(params[:question_id])
-  #   @comment = @question.comments.new(params[:comment])
-  #   respond_to do |format|
-  #     if @comment.save
-  #       format.html { redirect_to [@question, @comment], notice: 'Comment was successfully created.' }
-  #       format.json { render :show, status: :created, location: @comment }
-  #     else
-  #       format.html { render :new }
-  #       format.json { render json: @comment.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
-
-  # # PATCH/PUT /comments/1
-  # # PATCH/PUT /comments/1.json
-  # # def update
-  # #   @question = Question.find(params[:question_id])
-  # #   @comment = Comment.find(params[:id])
-  # #   if @comment.update(params[:comment])
-  # #     format.html { redirect_to post_comment_url(@question, @comment), notice: 'Comment was successfully updated.' }
-  # #     format.json { render :show, status: :ok, location: @comment }
-  # #   else
-  # #     format.html { render :edit }
-  # #       format.json { render json: @comment.errors, status: :unprocessable_entity }
-  # #   end
-  # # end
-  # def update
-  #   @question = Question.find(params[:question_id])
-  #   @comment = Comment.find(params[:id])
-
-  #     if @comment.update(comment_params)
-  #       format.html { redirect_to [@question, @comment], notice: 'Question was successfully updated.' }
-  #       format.json { render :show, status: :ok, location: @question }
-  #     else
-  #       format.html { render :edit }
-  #       format.json { render json: @question.errors, status: :unprocessable_entity }
-  #     end
-
-  # end
-
-  # # DELETE /comments/1
-  # # DELETE /comments/1.json
-  # def destroy
-  #   @question = Question.find(params[:question_id])
-  #   @comment = Comment.find(params[:id])
-  #   @comment.destroy
-  #   respond_to do |format|
-  #     format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
-  #     format.json { head :no_content }
-  #   end
-  # end
   
   def index
     @question = Question.find(params[:question_id])
@@ -96,13 +15,23 @@ class CommentsController < ApplicationController
     @comment = @question.comments.new
   end
 
+  # def create
+  #   @question = Question.find(params[:question_id])
+  #   @comment = @question.comments.new(params[:comment])
+  #   if @comment.save
+  #     redirect_to question_comment_url(@question, @comment)
+  #   else
+  #     render :action => "new"
+  #   end
+  # end
   def create
     @question = Question.find(params[:question_id])
-    @comment = @question.comments.new(params[:comment])
+    @comment = @question.comments.create(comment_params)
+    @comment.commenter = current_user.id
     if @comment.save
-      redirect_to question_comment_url(@question, @comment)
+      redirect_to @question
     else
-      render :action => "new"
+      flash.now[:danger] = "error"
     end
   end
 

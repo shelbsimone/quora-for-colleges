@@ -1,16 +1,10 @@
-<p id="notice"><%= notice %></p>
+<div class="panel panel-primary">
+  <div class="panel-heading"><strong>
+      RE: <%= @question.content %>
+  </strong></div>
+  <div class="panel-body"><%= @comment.body %></div>
+  <div class="panel-footer">from <%= @comment.commenter.username %> on <%= @comment.created_at.strftime("%m/%d/%Y") %></div>
+</div>
 
-<h1>Comment on <%= @question %></h1>
-
-<p>
-  <b>Commenter:</b>
-  <%=h @comment.commenter %>
-</p>
-
-<p>
-  <b>Comment:</b>
-  <%=h @comment.body %>
-</p>
-
-<%= link_to 'Edit', edit_question_comment_path(@question, @comment) %> |
-<%= link_to 'Back', question_comments_path(@question) %>
+<!-- link_to 'Edit', edit_question_comment_path(@question, @comment) %> |-->
+<!-- link_to 'Back', question_comments_path(@question) %>-->
