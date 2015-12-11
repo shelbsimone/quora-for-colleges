@@ -6,7 +6,7 @@
       
       <div class="panel panel-primary">
         <div class="panel-heading"><strong>
-          <%= question.content %> <%= link_to ' More', question %>
+          <%= link_to question.content, question %>
         </strong></div>
         <div class="panel-body"><%= question.description %></div>
         <div class="panel-footer">from <%= question.user.username %> on <%= question.created_at.strftime("%m/%d/%Y") %></div>
