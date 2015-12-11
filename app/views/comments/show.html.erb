@@ -3,7 +3,7 @@
       RE: <%= @question.content %>
   </strong></div>
   <div class="panel-body"><%= @comment.body %></div>
-  <div class="panel-footer">from <%= @comment.commenter.username %> on <%= @comment.created_at.strftime("%m/%d/%Y") %></div>
+  <div class="panel-footer"> <%= @comment.commenter %> <%= time_ago_in_words(@comment.created_at) unless @comment.created_at.blank? %> ago </div>
 </div>
 
 <!-- link_to 'Edit', edit_question_comment_path(@question, @comment) %> |-->

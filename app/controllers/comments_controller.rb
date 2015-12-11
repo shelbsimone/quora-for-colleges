@@ -15,15 +15,6 @@ class CommentsController < ApplicationController
     @comment = @question.comments.new
   end
 
-  # def create
-  #   @question = Question.find(params[:question_id])
-  #   @comment = @question.comments.new(params[:comment])
-  #   if @comment.save
-  #     redirect_to question_comment_url(@question, @comment)
-  #   else
-  #     render :action => "new"
-  #   end
-  # end
   def create
     @question = Question.find(params[:question_id])
     @comment = @question.comments.create(comment_params)
@@ -43,7 +34,7 @@ class CommentsController < ApplicationController
   def update
     @question = Question.find(params[:question_id])
     @comment = comments.find(params[:id])
-    if @comment.update!(params[:comment])
+    if @comment.update_attributes(params[:comment])
       redirect_to question_comment_url(@question, @comment)
     else
       render :action => "edit"
@@ -52,11 +43,11 @@ class CommentsController < ApplicationController
 
   def destroy
     @question = Question.find(params[:question_id])
-    @comment = Comment.find(params[:id])
+    @comment = @question.comment.find(params[:id])
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to question_comments_path(@question) }
+      format.html { redirect_to question_comments_path(@question), notice: 'Comment was successfully destroyed.' }
       format.xml  { head :ok }
     end
   end

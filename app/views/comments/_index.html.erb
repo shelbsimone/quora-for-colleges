@@ -1,0 +1,27 @@
+<% @question.comments.each do |c| %>
+    <div class="comments_wrapper clearfix">
+        <div class="panel panel-primary">
+          
+        <div class="panel-heading">RE: <%= @question.content %></div>
+        
+        <div class="panel-body"><%= c.body %></div>
+        
+        <div class="panel-footer"> <%= c.commenter %> <%= time_ago_in_words(c.created_at) unless c.created_at.blank? %> ago
+
+        
+            <% if current_user.username == c.commenter %>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class='fa fa-cog'></i>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li> <%= link_to 'Destroy', @c, method: :delete, data: {confirm: 'Are you sure?'  } %></li>
+                  </ul>
+                </div>
+            <% else %>
+                <!--Upvote-->
+            <% end %>
+       </div>
+    </div>
+<% end %>
+

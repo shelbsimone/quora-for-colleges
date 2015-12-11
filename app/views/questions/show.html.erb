@@ -4,16 +4,16 @@
         <%= @question.content %>
         </strong></div>
         <div class="panel-body"><%= @question.description %></div>
-        <div class="panel-footer">from <%= @question.user.username %> on <%= @question.created_at.strftime("%m/%d/%Y") %>
+        <div class="panel-footer">from <%= @question.user.username %> <%= time_ago_in_words(@question.created_at) %> ago 
         
-        <% if @question.user_id == current_user %>
+        <% if current_user.username == @question.user.username %>
                 <div class="btn-group">
                   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class='fa fa-cog'></i> <span class="caret"></span>
+                    <i class='fa fa-cog'></i>
                   </button>
                   <ul class="dropdown-menu">
                     <li><%= link_to 'Edit', edit_question_path(@question) %></li>
-                    <li><%= link_to 'Delete', @question, method: :delete, data: {confirm: 'Are you sure?'  } %></li>
+                    <li><%= link_to 'Delete', @question, method: :delete, data: {confirm: 'Are you sure?'} %></li>
                     <li><%= link_to 'New comment', new_question_comment_path(@question) %></li>
                   </ul>
           </div>
@@ -22,30 +22,9 @@
           <% end %>
 </div>
       </div>
+      
+      <h2>Submit a Comment</h2>
+      <%= render 'comments/form' %>
 
 <h3>Answers</h3>
-<% @question.comments.each do |c| %>
-  
-  <div class="panel panel-primary">
-  <div class="panel-heading"><strong>
-      RE: <%= @question.content %>
-  </strong></div>
-  <div class="panel-body"><%=h c.body %></div>
-  <div class="panel-footer">from <%=h c.commenter %> on <%= c.created_at.strftime("%m/%d/%Y") %>
-
-        <% if current_user.username == c.commenter %>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class='fa fa-cog'></i> <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><%= link_to 'Delete', @comment, method: :delete, data: {confirm: 'Are you sure?'  } %></li>
-                  </ul>
-          </div>
-        <% else %>
-                <!--Upvote-->
-        <% end %>
-        </div>
-        </div>
-<% end %>
-
+<%= render 'comments/index' %>
