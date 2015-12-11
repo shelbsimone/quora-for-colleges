@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  resources :questions
+  resources :comments
+  resources :questions do
+       resources :comments
+     end
   devise_for :users
+  
+  
   
 
   root 'pages#home'

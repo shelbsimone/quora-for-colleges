@@ -47,6 +47,7 @@ group :development do
   gem "font-awesome-rails"
   gem 'simple_form'
   gem 'devise'
+  gem 'jquery-atwho-rails'
   
   gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 end
