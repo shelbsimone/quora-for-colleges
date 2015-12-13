@@ -3,6 +3,6 @@ class Question < ActiveRecord::Base
     validates_length_of :content, :maximum => 140
     
     belongs_to :user
-    has_many :comments
+    has_many :comments, dependent: :destroy
     
 end

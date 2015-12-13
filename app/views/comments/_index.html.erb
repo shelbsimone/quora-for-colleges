@@ -15,7 +15,7 @@
                     <i class='fa fa-cog'></i>
                   </button>
                   <ul class="dropdown-menu">
-                    <li> <%= link_to 'Destroy', @c, method: :delete, data: {confirm: 'Are you sure?'  } %></li>
+                    <li> <%= link_to 'Destroy', [c.question, c], method: :delete, data: {confirm: 'Are you sure?'  } %></li>
                   </ul>
                 </div>
             <% else %>
